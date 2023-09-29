@@ -12,4 +12,6 @@ class Salon extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    protected $fillable = ['name', 'address'];
 }

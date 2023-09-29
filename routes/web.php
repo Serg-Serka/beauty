@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\AppointmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,5 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('beauty/', [AppointmentController::class, 'renderForm']);
+Route::post('beauty/', [AppointmentController::class, 'makeRecord']);
+Route::post('beauty/getSalons', [AppointmentController::class, 'getSalons']);
+Route::post('beauty/getServices', [AppointmentController::class, 'getServices']);
 
 require __DIR__.'/auth.php';

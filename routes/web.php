@@ -37,8 +37,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('beauty/', [AppointmentController::class, 'renderForm']);
-Route::post('beauty/', [AppointmentController::class, 'makeRecord']);
+Route::post('beauty/makeRecord', [AppointmentController::class, 'makeRecord']);
 Route::post('beauty/getSalons', [AppointmentController::class, 'getSalons']);
 Route::post('beauty/getServices', [AppointmentController::class, 'getServices']);
+Route::post('beauty/getAppointments', [AppointmentController::class, 'getAppointments']);
 
 require __DIR__.'/auth.php';

@@ -12,4 +12,11 @@ class Appointment extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    protected $fillable = [
+        'name',
+        'phone',
+        'date',
+        'service_id'
+    ];
 }

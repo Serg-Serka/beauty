@@ -21,11 +21,13 @@ class AppointmentController extends Controller
 
     public function getSalons(): JsonResponse
     {
+//        sleep(3);
         return \response()->json(['success' => true, 'salons' => Salon::all()]);
     }
 
     public function getServices(Request $request): JsonResponse
     {
+//        sleep(2);
         return \response()->json(
             [
                 'success' => true,
@@ -36,6 +38,7 @@ class AppointmentController extends Controller
 
     public function getAppointments(Request $request)
     {
+//        sleep(2);
         return \response()->json(
             [
                 'success' => true,

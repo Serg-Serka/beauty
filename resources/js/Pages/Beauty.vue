@@ -5,6 +5,7 @@ import { reactive, ref } from 'vue';
 import 'v-calendar/style.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import AppointmentDateTime from "@/Pages/Beauty/AppointmentDateTime.vue";
+import Loader from "@/Components/Loader.vue";
 
 const formData = reactive({
     salons: [],
@@ -116,6 +117,9 @@ let nextStep = () => {
                 <div class="mb-3">
                     <label for="salonSelect" class="form-label">Choose salon: </label>
                     <select id="salonSelect" class="form-select" v-model="formData.selectedSalon" @change="formUpdate">
+                        <option v-if="formData.loading">
+                            <Loader :show="formData.loading" />
+                        </option>
                         <option v-for="(salon) in formData.salons" :value="salon">
                             {{salon.name + ', ' + salon.address}}
                         </option>
@@ -125,6 +129,9 @@ let nextStep = () => {
                 <div class="mb-3">
                     <label for="serviceSelect" class="form-label">Choose service: </label>
                     <select id="serviceSelect" class="form-select" v-model="formData.selectedService">
+                        <option v-if="formData.loading">
+                            <Loader :show="formData.loading" />
+                        </option>
                         <option v-for="(service) in formData.services" :value="service">
                             {{service.name}}
                         </option>
@@ -132,7 +139,7 @@ let nextStep = () => {
                 </div>
 
                 <button type="button"
-                        class="btn btn-warning"
+                        class="btn btn-success"
                         :disabled="formData.isButtonDisabled()"
                         @click="nextStep"
                 >

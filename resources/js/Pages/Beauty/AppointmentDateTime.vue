@@ -5,6 +5,7 @@ import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'v-calendar/style.css';
 import AppointmentModalForm from "@/Pages/Beauty/AppointmentModalForm.vue";
+import Loader from "@/Components/Loader.vue";
 
 defineProps({
     show: {
@@ -46,7 +47,10 @@ let formData = reactive({
         return this.notAvailableHours.includes(hour);
     },
 
-
+    loading: false,
+    setLoading(status) {
+        this.loading = status;
+    },
 });
 
 let date = ref(null);
@@ -57,7 +61,9 @@ let popover = ref({
 
 let updateDate = (date) => {
     formData.setNotAvailableHours([]);
+    formData.setShowWorkingHours(false);
     if (date) {
+        formData.setLoading(true);
         axios.post('/beauty/getAppointments', {
             year: date.getFullYear(),
             month: date.getMonth() + 1,
@@ -68,8 +74,9 @@ let updateDate = (date) => {
                 notAvailableHours.push(appointment.date.substring(11, 16));
             });
             formData.setNotAvailableHours(notAvailableHours);
+            formData.setLoading(false);
+            formData.setShowWorkingHours(true);
         });
-        formData.setShowWorkingHours(true);
     }
 }
 </script>
@@ -91,6 +98,7 @@ let updateDate = (date) => {
                 </template>
             </DatePicker>
         </div>
+        <Loader :show="formData.loading" />
         <div v-if="formData.showWorkingHours" class="mb-3">
             Choose time:
             <ul class="list-group">

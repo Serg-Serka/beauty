@@ -12,4 +12,13 @@ class Service extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    protected $fillable = [
+        'name',
+        'working_days',
+        'working_hours',
+        'is_enabled',
+        'salon_id',
+        'type_id'
+    ];
 }

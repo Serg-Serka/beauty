@@ -2,6 +2,8 @@
 import {DatePicker} from "v-calendar";
 import {reactive, ref} from "vue";
 import axios from "axios";
+import 'bootstrap/dist/css/bootstrap.css';
+import 'v-calendar/style.css';
 import AppointmentModalForm from "@/Pages/Beauty/AppointmentModalForm.vue";
 
 defineProps({
@@ -73,24 +75,26 @@ let updateDate = (date) => {
 </script>
 <template>
     <form v-if="show">
-        <label for="datePicker">
-            Choose date:
-        </label>
-        <DatePicker id="datePicker"
-                    v-model="date"
-                    mode="date"
-                    :popover="popover"
-                    :disabled-dates="disabledDates"
-                    @update:modelValue="updateDate"
-        >
-            <template #default="{ inputValue, inputEvents }">
-                <input :value="inputValue" v-on="inputEvents" />
-            </template>
-        </DatePicker>
-        <div v-if="formData.showWorkingHours">
+        <div class="mb-3">
+            <label class="form-label" for="datePicker">
+                Choose date:
+            </label>
+            <DatePicker id="datePicker"
+                        v-model="date"
+                        mode="date"
+                        :popover="popover"
+                        :disabled-dates="disabledDates"
+                        @update:modelValue="updateDate"
+            >
+                <template #default="{ inputValue, inputEvents }">
+                    <input class="form-control" :value="inputValue" v-on="inputEvents" />
+                </template>
+            </DatePicker>
+        </div>
+        <div v-if="formData.showWorkingHours" class="mb-3">
             Choose time:
-            <ul>
-                <li v-for="hour in workingHours" :key="hour">
+            <ul class="list-group">
+                <li v-for="hour in workingHours" :key="hour" class="list-group-item">
                     <AppointmentModalForm
                         :date="date"
                         :hour="hour"

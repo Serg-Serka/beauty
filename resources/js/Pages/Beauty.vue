@@ -107,35 +107,48 @@ let nextStep = () => {
 
 <template>
     <Head title="Beauty" />
-    <h1>Beauty form goes here!</h1>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <h3>Booking on beauty services</h3>
 
-    <form v-if="!formData.showDateForm">
-        <select v-model="formData.selectedSalon" @change="formUpdate">
-            <option v-for="(salon) in formData.salons" :value="salon">
-                {{salon.name + ', ' + salon.address}}
-            </option>
-        </select>
+            <form v-if="!formData.showDateForm">
+                <div class="mb-3">
+                    <label for="salonSelect" class="form-label">Choose salon: </label>
+                    <select id="salonSelect" class="form-select" v-model="formData.selectedSalon" @change="formUpdate">
+                        <option v-for="(salon) in formData.salons" :value="salon">
+                            {{salon.name + ', ' + salon.address}}
+                        </option>
+                    </select>
+                </div>
 
-        <select v-model="formData.selectedService">
-            <option v-for="(service) in formData.services" :value="service">
-                {{service.name}}
-            </option>
-        </select>
+                <div class="mb-3">
+                    <label for="serviceSelect" class="form-label">Choose service: </label>
+                    <select id="serviceSelect" class="form-select" v-model="formData.selectedService">
+                        <option v-for="(service) in formData.services" :value="service">
+                            {{service.name}}
+                        </option>
+                    </select>
+                </div>
 
-        <button type="button"
-                class="btn btn-dark"
-                :disabled="formData.isButtonDisabled()"
-                @click="nextStep"
-        >
-            Next ->
-        </button>
-    </form>
+                <button type="button"
+                        class="btn btn-warning"
+                        :disabled="formData.isButtonDisabled()"
+                        @click="nextStep"
+                >
+                    Next
+                </button>
+            </form>
 
-    <AppointmentDateTime
-        :show="formData.showDateForm"
-        :salon-address="formData.selectedSalon.address"
-        :service="formData.selectedService"
-        :disabled-dates="disabledDates"
-        :working-hours="formData.workingHours"
-    />
+            <AppointmentDateTime
+                :show="formData.showDateForm"
+                :salon-address="formData.selectedSalon.address"
+                :service="formData.selectedService"
+                :disabled-dates="disabledDates"
+                :working-hours="formData.workingHours"
+            />
+        </div>
+        <div class="col"></div>
+    </div>
+
 </template>

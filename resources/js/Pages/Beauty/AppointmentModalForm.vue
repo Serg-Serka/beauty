@@ -82,9 +82,11 @@ let showModal = (id) => {
 </script>
 <template>
     <div>
-        {{hour}}
+        <span class="align-middle">
+            {{hour}}
+        </span>
         <button type="button"
-                class="btn btn-success"
+                class="btn btn-success float-right"
                 :disabled="isHourBtnDisabled"
                 @click.stop="toggleModal(hour)"
         >
@@ -93,26 +95,28 @@ let showModal = (id) => {
         <Modal :show="showModal(hour)" @close="toggleModal(hour)" >
             <div class="p-6">
                 <div v-if="modalForm.showForm">
-                    <h1>Modal for {{hour}}!!!</h1>
+                    <h4>Make record for {{hour}}</h4>
                     <form>
-                        <label for="name">
-                            Name:
-                        </label>
-                        <input v-model="modalForm.name" type="text" id="name" />
-                        <label for="phone">
-                            Phone:
-                        </label>
-                        <input v-model="modalForm.phone" type="text" id="phone" />
+                        <div class="mb-3">
+                            <label for="name" class="form-label">
+                                Name:
+                            </label>
+                            <input v-model="modalForm.name" type="text" id="name" class="form-control"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">
+                                Phone:
+                            </label>
+                            <input v-model="modalForm.phone" type="text" id="phone" class="form-control" />
+                        </div>
                     </form>
                 </div>
 
                 <div v-if="!modalForm.showForm">
-                    <h1>Record booked!</h1>
-                    <h3>{{date}}</h3>
-                    <br/>
-                    <h3>{{salonAddress}}</h3>
-                    <br/>
-                    <h3>{{service.name}}</h3>
+                    <h4>Record booked!</h4>
+                    <h5>Date: {{date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear() + ' ' + hour}}</h5>
+                    <h5>Salon address: {{salonAddress}}</h5>
+                    <h5>Service: {{service.name}}</h5>
                 </div>
 
                 <button class="btn btn-success"

@@ -52,7 +52,7 @@ class ServiceCrudController extends CrudController
         CRUD::field([
             'label' => "Type",
             'type' => 'select',
-            'name' => 'type_id',
+            'name' => 'service_type_id',
             'entity' => 'service_type',
             'model' => 'App\Models\ServiceType',
             'attribute' => 'type_code',
@@ -86,7 +86,7 @@ class ServiceCrudController extends CrudController
         CRUD::field([
             'label' => "Type",
             'type' => 'select',
-            'name' => 'type_id',
+            'name' => 'service_type_id',
             'entity' => 'service_type',
             'model' => 'App\Models\ServiceType',
             'attribute' => 'type_code',

@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Salon;
+use App\Models\ServiceType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Salon>
+ * @extends Factory<ServiceType>
  */
-class SalonFactory extends Factory
+class ServiceTypeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,8 +18,7 @@ class SalonFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->unique()->name(),
-            'address' => fake()->unique()->address(),
+            'type_code' => fake()->unique()->word()
         ];
     }
 }

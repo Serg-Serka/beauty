@@ -20,10 +20,15 @@ class Service extends Model
         'working_hours',
         'is_enabled',
         'salon_id',
-        'type_id'
+        'service_type_id'
     ];
 
     public function service_type() :BelongsTo
+    {
+        return $this->belongsTo(ServiceType::class);
+    }
+
+    public function serviceType() :BelongsTo
     {
         return $this->belongsTo(ServiceType::class);
     }

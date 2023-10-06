@@ -11,4 +11,5 @@ class ServiceType extends Model
     use CrudTrait;
     use HasFactory;
 
+    public $timestamps = false;
 }

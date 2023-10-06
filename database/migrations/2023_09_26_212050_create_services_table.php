@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('working_hours');// interval is 30mins
             $table->boolean('is_enabled');
             $table->unsignedBigInteger('salon_id');
-            $table->unsignedBigInteger('type_id');
+            $table->unsignedBigInteger('service_type_id');
 
             $table->foreign('salon_id')->references('id')->on('salons');
-            $table->foreign('type_id')->references('id')->on('service_types');
+            $table->foreign('service_type_id')->references('id')->on('service_types');
 
             $table->comment('Services');
         });

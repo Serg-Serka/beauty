@@ -54,6 +54,8 @@ class AppointmentController extends Controller
 
     public function makeRecord(Request $request)
     {
+        $response = ['success' => true];
+
         $hour = substr($request->input('hour'), 0, 2);
         $minutes = substr($request->input('hour'), 3, 2);
         $date = Carbon::parse(mktime(
@@ -65,6 +67,12 @@ class AppointmentController extends Controller
             intval($request->input('year'))
         ));
 
+        $appointments = Appointment::whereDate('date', '=', $date)->get();
+
+        if ($appointments->count()) {
+            $response = ['error' => true];
+        }
+
         $appointment = Appointment::create([
             'name' => $request->input('name'),
             'phone' => $request->input('phone'),
@@ -73,9 +81,6 @@ class AppointmentController extends Controller
         ]);
         $appointment->save();
 
-        return \response()->json([
-            'success' => true,
-            'mins' => $minutes
-        ]);
+        return \response()->json($response);
     }
 }

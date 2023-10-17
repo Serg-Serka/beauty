@@ -83,8 +83,8 @@ let nextStep = () => {
     let currentDate = new Date();
     let lastWorkingHour = formData.workingHours[formData.workingHours.length - 1].substring(0, 2);
 
-    if (currentDate.getDay() > 1) {
-        let currentDay = currentDate.getDay();
+    if (currentDate.getDate() > 1) {
+        let currentDay = currentDate.getDate();
         if (currentDate.getHours() >= lastWorkingHour) {
             currentDay++;
         }
